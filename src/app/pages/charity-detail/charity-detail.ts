@@ -5,7 +5,7 @@ import { Charity } from '../../models/charity.model';
 
 @Component({
   selector: 'app-charity-detail',
-  templateUrl: './charity-detail.component.html'
+  templateUrl: './charity-detail.html'
 })
 export class CharityDetailComponent {
 

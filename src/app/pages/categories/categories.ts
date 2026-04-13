@@ -3,7 +3,7 @@ import { ApiService } from '../../services/api';
 
 @Component({
   selector: 'app-categories',
-  templateUrl: './categories.component.html'
+  templateUrl: './categories.html'
 })
 export class CategoriesComponent {
 

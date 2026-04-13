@@ -1,7 +1,13 @@
 <h2>Charities</h2>
 
-<div *ngFor="let charity of charities">
-  <h3>{{ charity.name }}</h3>
-  <p>{{ charity.description }}</p>
-  <button (click)="openCharity(charity.id)">View</button>
-</div>
+<input [(ngModel)]="search" placeholder="Search charity">
+
+<button (click)="searchClick()">Search</button>
+
+@for (charity of charities; track charity.id) {
+  <div>
+    <h3>{{ charity.name }}</h3>
+    <p>{{ charity.description }}</p>
+    <button (click)="openCharity(charity.id)">View</button>
+  </div>
+}

@@ -1,5 +1,11 @@
 <h2>Categories</h2>
 
-<div *ngFor="let cat of categories">
-  {{ cat }}
-</div>
+@if (categories.length > 0) {
+  @for (cat of categories; track cat) {
+    <div>
+      {{ cat }}
+    </div>
+  }
+} @else {
+  <p>No categories found</p>
+}

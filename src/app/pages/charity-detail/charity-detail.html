@@ -1,6 +1,6 @@
-<div *ngIf="charity">
+@if (charity) {
   <h2>{{ charity.name }}</h2>
   <p>{{ charity.description }}</p>
   <p>Goal: {{ charity.goal }}</p>
   <p>Raised: {{ charity.raised }}</p>
-</div>
+}
