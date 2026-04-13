@@ -3,11 +3,11 @@ import { ApiService } from '../../services/api';
 import { Charity } from '../../models/charity.model';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './home.html',
 })
 export class HomeComponent {

@@ -8,6 +8,8 @@
   <div>
     <h3>{{ charity.name }}</h3>
     <p>{{ charity.description }}</p>
+
     <button (click)="openCharity(charity.id)">View</button>
+    <button [routerLink]="['/user', 1]">Owner</button>
   </div>
 }
