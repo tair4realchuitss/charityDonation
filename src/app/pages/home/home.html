@@ -1,1 +1,7 @@
-<p>home works!</p>
+<h2>Charities</h2>
+
+<div *ngFor="let charity of charities">
+  <h3>{{ charity.name }}</h3>
+  <p>{{ charity.description }}</p>
+  <button (click)="openCharity(charity.id)">View</button>
+</div>

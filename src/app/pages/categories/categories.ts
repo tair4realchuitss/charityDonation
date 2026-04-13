@@ -1,9 +1,18 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../../services/api';
 
 @Component({
   selector: 'app-categories',
-  imports: [],
-  templateUrl: './categories.html',
-  styleUrl: './categories.css',
+  templateUrl: './categories.component.html'
 })
-export class CategoriesComponent {}
+export class CategoriesComponent {
+
+  categories: any[] = [];
+
+  constructor(private api: ApiService) {}
+
+  ngOnInit() {
+    const charities = this.api.getCharities();
+    this.categories = [...new Set(charities.map(c => c.category.name))];
+  }
+}
