@@ -1,7 +1,20 @@
-<nav>
-  <button routerLink="/">Home</button>
-  <button routerLink="/categories">Categories</button>
-  <button routerLink="/user/1">My Profile</button>
-</nav>
+<header class="header">
+  <div class="logo">DONATION APP</div>
+
+  <div class="nav-right">
+    <button (click)="toggleTheme()">🌙</button>
+
+    @if (!isLoggedIn) {
+      <button (click)="login()">Sign In</button>
+    } @else {
+      <button (click)="goProfile()">Profile</button>
+    }
+  </div>
+</header>
 
 <router-outlet></router-outlet>
+
+<footer class="footer">
+  <p>Contact: example@mail.com</p>
+  <p>© Donation Platform</p>
+</footer>
