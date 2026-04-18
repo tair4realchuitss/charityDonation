@@ -1,7 +1,25 @@
 @if (charity) {
-  <h2>{{ charity.name }}</h2>
+
+  <h2>{{ charity.name }}</h2> <!-- from backend -->
+
   <p>{{ charity.description }}</p>
+
   <p>Goal: {{ charity.goal }}</p>
   <p>Raised: {{ charity.raised }}</p>
+
+  <progress [value]="charity.raised" [max]="charity.goal"></progress>
+
+  <h3>Comments</h3>
+
+  @for (c of comments; track c.id) {
+    <div class="comment">
+      <p>{{ c.user }}</p> <!-- from backend -->
+      <p>{{ c.text }}</p>
+    </div>
+  }
+
+  <textarea [(ngModel)]="newComment"></textarea>
+
+  <button (click)="addComment()">Comment</button>
+
 }
-<button>Donate</button>

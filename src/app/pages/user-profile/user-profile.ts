@@ -13,6 +13,7 @@ export class UserProfileComponent {
 
   user?: User;
   charities: Charity[] = [];
+  tab: string = 'profile';
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 

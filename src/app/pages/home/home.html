@@ -1,15 +1,35 @@
+<h2>Categories</h2>
+
+<div class="categories-container">
+  @for (cat of categories; track cat) {
+    <div class="category-card">
+      {{ cat }} <!-- from backend -->
+    </div>
+  }
+</div>
+
 <h2>Charities</h2>
 
-<input [(ngModel)]="search" placeholder="Search charity">
+<div class="charity-container">
+  @for (charity of charities; track charity.id) {
+    <div class="charity-card">
 
-<button (click)="searchClick()">Search</button>
+      <h3>{{ charity.name }}</h3> <!-- from backend -->
+      <p>{{ charity.description }}</p> <!-- from backend -->
 
-@for (charity of charities; track charity.id) {
-  <div>
-    <h3>{{ charity.name }}</h3>
-    <p>{{ charity.description }}</p>
+      <p>Goal: {{ charity.goal }}</p>
+      <p>Raised: {{ charity.raised }}</p>
 
-    <button (click)="openCharity(charity.id)">View</button>
-    <button [routerLink]="['/user', 1]">Owner</button>
-  </div>
-}
+      <progress [value]="charity.raised" [max]="charity.goal"></progress>
+
+      <button (click)="openCharity(charity.id)">View</button>
+
+      @if (isLoggedIn) {
+        <button (click)="donate(charity.id)">Donate</button>
+      } @else {
+        <p>Login to donate</p>
+      }
+
+    </div>
+  }
+</div>

@@ -1,36 +1,30 @@
 import { Component } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api';
-import { Charity } from '../../models/charity.model';
-import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+
 @Component({
-  selector: 'app-home',
   standalone: true,
-  imports: [FormsModule, RouterModule],
-  templateUrl: './home.html',
+  imports: [RouterModule],
+  templateUrl: './home.html'
 })
 export class HomeComponent {
 
-  charities: Charity[] = [];
-  filtered: Charity[] = [];
+  charities: any[] = [];
+  categories: string[] = [];
+  isLoggedIn = false;
 
   constructor(private api: ApiService, private router: Router) {}
 
   ngOnInit() {
     this.charities = this.api.getCharities();
-    this.filtered = this.charities;
+    this.categories = [...new Set(this.charities.map(c => c.category.name))];
   }
-
 
   openCharity(id: number) {
     this.router.navigate(['/charity', id]);
   }
 
-  search: string = '';
-
-  searchClick() {
-    this.filtered = this.charities.filter(c =>
-    c.name.toLowerCase().includes(this.search.toLowerCase()));
+  donate(id: number) {
+    this.router.navigate(['/donate', id]);
   }
 }

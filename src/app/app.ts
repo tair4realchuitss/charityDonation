@@ -7,7 +7,7 @@ import { Router, RouterModule } from '@angular/router';
   imports: [RouterModule],
   templateUrl: './app.html'
 })
-export class AppComponent {
+export class App {
 
   isLoggedIn = false;
 

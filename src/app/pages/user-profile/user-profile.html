@@ -1,14 +1,30 @@
 @if (user) {
+
   <h2>{{ user.username }}</h2>
   <p>{{ user.email }}</p>
+  <p>Region: {{ user.region }}</p> <!-- backend -->
+  <p>Balance: {{ user.balance }}</p>
 
-  <h3>Charities:</h3>
+  <div class="tabs">
+    <button (click)="tab='profile'">My Profile</button>
+    <button (click)="tab='donations'">My Donations</button>
+    <button (click)="tab='charities'">My Charities</button>
+  </div>
 
-  @for (charity of charities; track charity.id) {
-    <div>
-      <p>{{ charity.name }}</p>
-    </div>
+  @if (tab === 'profile') {
+    <p>Profile info here</p>
   }
-} @else {
-  <p>User not found</p>
+
+  @if (tab === 'donations') {
+    @for (d of donations; track d.id) {
+      <p>{{ d.amount }}</p> <!-- backend -->
+    }
+  }
+
+  @if (tab === 'charities') {
+    @for (c of charities; track c.id) {
+      <p>{{ c.name }}</p>
+    }
+  }
+
 }
