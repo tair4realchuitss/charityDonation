@@ -9,24 +9,23 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class App {
 
-  isLoggedIn = false;
-
   constructor(private router: Router) {
     const saved = localStorage.getItem('theme');
     if (saved) document.body.className = saved;
   }
 
+  isLoggedIn = localStorage.getItem('auth') === 'true';
+
   login() {
-    this.isLoggedIn = true;
+    this.router.navigate(['/login']);
   }
 
   goProfile() {
     this.router.navigate(['/user', 1]);
   }
 
-  toggleTheme() {
-    const current = document.body.className === 'dark' ? 'light' : 'dark';
-    document.body.className = current;
-    localStorage.setItem('theme', current);
+  logout() {
+    localStorage.removeItem('auth');
+    this.isLoggedIn = false;
   }
 }

@@ -28,8 +28,8 @@ export class ApiService {
     }
   ];
 
-  private users: User[] = [
-    { id: 1, username: 'john', email: 'john@mail.com' }
+  private users = [
+    { id: 1, username: 'Jane', email: 'jane@mail.com', region: 'Almaty' }
   ];
 
   getCharities() {

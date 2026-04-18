@@ -1,1 +1,12 @@
-<p>login works!</p>
+<h2>Login</h2>
+
+<div class="login-container">
+
+  <input [(ngModel)]="username" placeholder="Username">
+  <input [(ngModel)]="password" type="password" placeholder="Password">
+
+  <button (click)="doLogin()">Sign In</button>
+
+  <p>No account? Just click login (simulation)</p>
+
+</div>

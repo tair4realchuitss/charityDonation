@@ -1,1 +1,9 @@
-<p>donation works!</p>
+<h2>Donation Page</h2>
+
+<p>Your balance: {{ balance }}</p>
+
+<input [(ngModel)]="amount" type="number" placeholder="Amount">
+
+<textarea [(ngModel)]="message" placeholder="Message"></textarea>
+
+<button (click)="sendDonation()">Donate</button>

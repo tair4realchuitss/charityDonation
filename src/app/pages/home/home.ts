@@ -25,6 +25,11 @@ export class HomeComponent {
   }
 
   donate(id: number) {
+    if (!localStorage.getItem('auth')) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.router.navigate(['/donate', id]);
   }
 }

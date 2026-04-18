@@ -1,20 +1,14 @@
-<header class="header">
-  <div class="logo">DONATION APP</div>
+<header>
 
-  <div class="nav-right">
-    <button (click)="toggleTheme()">🌙</button>
+  <div>DONATION APP</div>
 
-    @if (!isLoggedIn) {
-      <button (click)="login()">Sign In</button>
-    } @else {
-      <button (click)="goProfile()">Profile</button>
-    }
-  </div>
+  @if (!isLoggedIn) {
+    <button [routerLink]="['/login']">Sign In</button>
+  } @else {
+    <button (click)="goProfile()">Profile</button>
+    <button (click)="logout()">Logout</button>
+  }
+
 </header>
 
 <router-outlet></router-outlet>
-
-<footer class="footer">
-  <p>Contact: example@mail.com</p>
-  <p>© Donation Platform</p>
-</footer>
