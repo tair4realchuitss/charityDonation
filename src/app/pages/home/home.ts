@@ -11,11 +11,9 @@ export class HomeComponent {
 
   charities: any[] = [];
   categories: string[] = [];
-  isLoggedIn = false;
+  isLoggedIn = localStorage.getItem('auth') === 'true';
 
-  constructor(private api: ApiService, private router: Router) {}
-
-  ngOnInit() {
+  constructor(private api: ApiService, private router: Router) {
     this.charities = this.api.getCharities();
     this.categories = [...new Set(this.charities.map(c => c.category.name))];
   }
@@ -25,11 +23,10 @@ export class HomeComponent {
   }
 
   donate(id: number) {
-    if (!localStorage.getItem('auth')) {
+    if (!this.isLoggedIn) {
       this.router.navigate(['/login']);
       return;
     }
-
     this.router.navigate(['/donate', id]);
   }
 }

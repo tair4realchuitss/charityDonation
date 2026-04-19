@@ -1,35 +1,31 @@
-<h2>Categories</h2>
+<div class="home">
 
-<div class="categories-container">
-  @for (cat of categories; track cat) {
-    <div class="category-card">
-      {{ cat }} <!-- from backend -->
-    </div>
-  }
-</div>
+  <h2>Categories</h2>
+  <div class="categories">
+    @for (cat of categories; track cat) {
+      <div class="category-card">{{ cat }}</div>
+    }
+  </div>
 
-<h2>Charities</h2>
+  <h2>Charities</h2>
+  <div class="charities">
 
-<div class="charity-container">
-  @for (charity of charities; track charity.id) {
-    <div class="charity-card">
+    @for (c of charities; track c.id) {
 
-      <h3>{{ charity.name }}</h3> <!-- from backend -->
-      <p>{{ charity.description }}</p> <!-- from backend -->
+      <div class="card">
 
-      <p>Goal: {{ charity.goal }}</p>
-      <p>Raised: {{ charity.raised }}</p>
+        <h3>{{ c.title }}</h3>
+        <p>{{ c.description }}</p>
 
-      <progress [value]="charity.raised" [max]="charity.goal"></progress>
+        <p>{{ c.current_amount }} / {{ c.goal_amount }}</p>
 
-      <button (click)="openCharity(charity.id)">View</button>
+        <button (click)="openCharity(c.id)">View</button>
+        <button (click)="donate(c.id)">Donate</button>
 
-      @if (isLoggedIn) {
-        <button (click)="donate(charity.id)">Donate</button>
-      } @else {
-        <p>Login to donate</p>
-      }
+      </div>
 
-    </div>
-  }
+    }
+
+  </div>
+
 </div>

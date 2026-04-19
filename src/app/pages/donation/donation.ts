@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,18 +10,11 @@ import { FormsModule } from '@angular/forms';
 export class DonationComponent {
 
   amount = 0;
-  message = '';
-  balance = 5000; // fake balance
+  msg = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private router: Router) {}
 
-  sendDonation() {
-    if (this.amount > this.balance) {
-      alert('Not enough balance');
-      return;
-    }
-
-    this.balance -= this.amount;
-    alert('Donation sent (simulation)');
+  confirm() {
+    this.router.navigate(['/success']);
   }
 }

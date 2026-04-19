@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,10 +11,13 @@ export class LoginComponent {
   username = '';
   password = '';
 
-  constructor(private router: Router) {}
-
+  fakeRegister() {
+  alert('Account created (simulation)');
+  localStorage.setItem('auth', 'true');
+  window.location.reload();
+}
   doLogin() {
     localStorage.setItem('auth', 'true');
-    this.router.navigate(['/']);
+    window.location.reload();
   }
 }

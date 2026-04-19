@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -7,25 +7,30 @@ import { Router, RouterModule } from '@angular/router';
   imports: [RouterModule],
   templateUrl: './app.html'
 })
-export class App {
-
-  constructor(private router: Router) {
-    const saved = localStorage.getItem('theme');
-    if (saved) document.body.className = saved;
-  }
+export class AppComponent {
 
   isLoggedIn = localStorage.getItem('auth') === 'true';
 
-  login() {
-    this.router.navigate(['/login']);
+  showMenu = false;
+
+  constructor(private router: Router) {}
+
+  goHome() {
+    this.router.navigate(['/']);
   }
 
-  goProfile() {
-    this.router.navigate(['/user', 1]);
+  toggleMenu(event: Event) {
+    event.stopPropagation();
+    this.showMenu = !this.showMenu;
   }
 
   logout() {
     localStorage.removeItem('auth');
-    this.isLoggedIn = false;
+    window.location.reload();
+  }
+
+  @HostListener('document:click')
+  closeMenu() {
+    this.showMenu = false;
   }
 }

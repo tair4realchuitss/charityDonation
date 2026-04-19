@@ -1,14 +1,58 @@
-<header>
+<header class="header">
 
-  <div>DONATION APP</div>
+  <div class="logo" (click)="goHome()">DONATION</div>
 
-  @if (!isLoggedIn) {
-    <button [routerLink]="['/login']">Sign In</button>
-  } @else {
-    <button (click)="goProfile()">Profile</button>
-    <button (click)="logout()">Logout</button>
-  }
+  <div class="nav">
+
+    @if (!isLoggedIn) {
+
+      <button routerLink="/login">Sign In</button>
+
+    } @else {
+
+      <div class="profile-container">
+
+        <img 
+          src="https://via.placeholder.com/40"
+          class="avatar"
+          (click)="toggleMenu($event)"
+        >
+
+        @if (showMenu) {
+          <div class="profile-dropdown">
+
+            <div class="dropdown-header">
+              <p>Jane</p>
+              <p>Balance: 8000</p>
+            </div>
+
+            <div class="dropdown-item" routerLink="/user/1">
+              My Profile
+            </div>
+
+            <div class="dropdown-item" routerLink="/user/1">
+              My Donations
+            </div>
+
+            <div class="dropdown-item" routerLink="/user/1">
+              My Charities
+            </div>
+
+            <div class="dropdown-item" (click)="logout()">
+              Logout
+            </div>
+
+          </div>
+        }
+
+      </div>
+
+    }
+
+  </div>
 
 </header>
 
-<router-outlet></router-outlet>
+<main>
+  <router-outlet></router-outlet>
+</main>
