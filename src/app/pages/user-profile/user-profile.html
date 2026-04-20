@@ -1,23 +1,29 @@
-<div class="profile">
-  <img [src]="user.avatar">
-
-  <h2>{{ user.username }}</h2>
-  <p>{{ user.email }}</p>
-  <p>{{ user.region }}</p>
-  <p>Balance: {{ user.balance }}</p>
-
-  <div class="tabs">
-    <button (click)="tab='profile'">Profile</button>
-    <button (click)="tab='donations'">Donations</button>
+<div class="profile" *ngIf="userProfile">
+  <div class="profile-header">
+    <h2>{{ userProfile.user.username }}</h2>
+    <p>{{ userProfile.user.email }}</p>
+    <p>Status: {{ userProfile.role }}</p>
+    <p><strong>Balance: {{ userProfile.balance | currency }}</strong></p>
   </div>
 
-  @if (tab === 'donations') {
-    @for (d of donations; track d.id) {
-      <p>{{ d.amount }}</p>
-    }
-  }
-  <div class="back-home">
-  <a routerLink="/">← Back to Home</a>
-</div>
+  <div class="tabs">
+    <button (click)="tab='profile'" [class.active]="tab==='profile'">Profile</button>
+    <button (click)="tab='donations'" [class.active]="tab==='donations'">Donations</button>
+  </div>
 
+  <div class="tab-content">
+    @if (tab === 'donations') {
+      @for (d of donations; track d.id) {
+        <div class="donation-item">
+          <p>Donated: {{ d.amount | currency }} to {{ d.campaign_name }}</p>
+        </div>
+      } @empty {
+        <p>No donations found.</p>
+      }
+    }
+  </div>
+
+  <div class="back-home">
+    <a routerLink="/">← Back to Home</a>
+  </div>
 </div>

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-success',
-  imports: [],
+  standalone: true,
+  imports: [RouterModule],
   templateUrl: './success.html',
-  styleUrl: './success.css',
+  styleUrls: ['./success.css']
 })
 export class SuccessComponent {}

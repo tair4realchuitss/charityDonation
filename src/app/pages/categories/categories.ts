@@ -1,18 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api';
 
 @Component({
   selector: 'app-categories',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './categories.html'
 })
-export class CategoriesComponent {
-
+export class CategoriesComponent implements OnInit {
   categories: any[] = [];
 
-  constructor(private api: ApiService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    const charities = this.api.getCharities();
-    this.categories = [...new Set(charities.map(c => c.category.name))];
+    this.apiService.getCategories().subscribe({
+      next: (data: any) => {
+        this.categories = data;
+      },
+      error: (err: any) => {
+        console.error('Could not fetch categories', err);
+      }
+    });
   }
 }

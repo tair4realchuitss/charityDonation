@@ -1,13 +1,19 @@
 <div class="donate">
-
   <h2>Donate</h2>
 
-  <input [(ngModel)]="amount" type="number">
-  <textarea [(ngModel)]="msg"></textarea>
+  <div class="form-group">
+    <label>Amount:</label>
+    <input [(ngModel)]="amount" type="number">
+  </div>
+
+  <div class="form-group">
+    <label>Message (Optional):</label>
+    <textarea [(ngModel)]="msg"></textarea>
+  </div>
 
   <button (click)="confirm()">Continue</button>
+  
   <div class="back-home">
-  <a routerLink="/">← Back to Home</a>
-</div>
-
+    <a routerLink="/">← Back to Home</a>
+  </div>
 </div>

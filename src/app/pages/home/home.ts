@@ -1,32 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  selector: 'app-home',
   standalone: true,
-  imports: [RouterModule],
-  templateUrl: './home.html'
+  imports: [RouterModule, CommonModule],
+  templateUrl: './home.html',
+  styleUrl: './home.css'
 })
-export class HomeComponent {
-
+export class HomeComponent implements OnInit {
   charities: any[] = [];
-  categories: string[] = [];
-  isLoggedIn = localStorage.getItem('auth') === 'true';
+  categories: any[] = [];
 
-  constructor(private api: ApiService, private router: Router) {
-    this.charities = this.api.getCharities();
-    this.categories = [...new Set(this.charities.map(c => c.category.name))];
+  constructor(private api: ApiService, private router: Router) {}
+
+  ngOnInit() {
+    this.api.getCampaigns().subscribe({
+      next: (data: any) => this.charities = data,
+      error: (err: any) => console.error(err)
+    });
+
+    this.api.getCategories().subscribe({
+      next: (data: any) => this.categories = data,
+      error: (err: any) => console.error(err)
+    });
+  }
+
+  donate(id: number) {
+    this.router.navigate(['/donate', id]);
   }
 
   openCharity(id: number) {
     this.router.navigate(['/charity', id]);
-  }
-
-  donate(id: number) {
-    if (!this.isLoggedIn) {
-      this.router.navigate(['/login']);
-      return;
-    }
-    this.router.navigate(['/donate', id]);
   }
 }

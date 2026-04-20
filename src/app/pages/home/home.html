@@ -1,31 +1,22 @@
 <div class="home">
-
   <h2>Categories</h2>
   <div class="categories">
-    @for (cat of categories; track cat) {
-      <div class="category-card">{{ cat }}</div>
+    @for (cat of categories; track cat.id) {
+      <div class="category-card">{{ cat.name }}</div>
     }
   </div>
 
   <h2>Charities</h2>
   <div class="charities">
-
     @for (c of charities; track c.id) {
-
       <div class="card">
-
         <h3>{{ c.title }}</h3>
         <p>{{ c.description }}</p>
-
-        <p>{{ c.current_amount }} / {{ c.goal_amount }}</p>
+        <p>{{ c.current_amount | currency }} / {{ c.goal_amount | currency }}</p>
 
         <button (click)="openCharity(c.id)">View</button>
         <button (click)="donate(c.id)">Donate</button>
-
       </div>
-
     }
-
   </div>
-
 </div>

@@ -50,3 +50,18 @@ db.sqlite3
 .env
 venv/
 
+# Environments
+venv/
+env/
+.env
+
+# Database
+db.sqlite3
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Media/Static (if you have them)
+/media/
+/static/

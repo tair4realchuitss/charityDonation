@@ -1,39 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './charity-detail.html'
 })
-export class CharityDetailComponent {
-
+export class CharityDetailComponent implements OnInit {
   charity: any;
   comments: any[] = [];
   newComment = '';
-  currentUserId = 1;
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) {
+  constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) {}
 
+  ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-
-    this.charity = this.api.getCharities().find(c => c.id === id);
-    this.comments = this.api.getCommentsByCharity(id);
-  }
-
-  goUser(id: number) {
-    this.router.navigate(['/user', id]);
+    
+    this.api.getCampaignById(id).subscribe(data => {
+      this.charity = data;
+      this.comments = data.comments || []; 
+    });
   }
 
   addComment() {
-    this.comments.push({
-      id: this.comments.length + 1,
-      user: 'You',
-      userId: 1,
-      text: this.newComment
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const commentData = { campaign: id, text: this.newComment };
+
+    this.api.postComment(commentData).subscribe(() => {
+      this.ngOnInit();
+      this.newComment = '';
     });
-    this.newComment = '';
   }
+  goUser(id: number) {
+  this.router.navigate(['/user', id]);
+}
 }
