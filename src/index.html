@@ -1,13 +1,568 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>CharityDonationPlatform</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charity Donation Landing</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <app-root></app-root>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="logo">
+          <div class="logo-mark">А</div>
+          <div class="logo-text">Анчоусы</div>
+        </a>
+
+        <nav class="nav">
+          
+          <a href="#posts">Projects</a>
+          <a href="#impact">Impact</a>
+          
+          <a href="#comments">Comments</a>
+          <a href="#footer">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <div id="authBlock"></div>
+          <button class="btn btn-header-light theme-toggle" id="themeToggle">🌙</button>
+          <a href="#donation-post" class="btn btn-primary">Donate ♥</a>
+        </div>
+      </div>
+    </div>
+    
+  </header>
+
+  <section class="hero">
+    <div class="container hero-wrap">
+
+      <div class="hero-content">
+        
+
+        <h1 class="hero-title">Give Children the Opportunity to Live Healthier Lives</h1>
+
+        <p class="hero-text">
+          A small act of kindness can make a big difference.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#donation-post" class="btn btn-primary">Open Donation Post</a>
+          <a href="#impact" class="btn btn-hero-outline">See Impact</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel">
+        <h2>Choose your impact</h2>
+        <p>
+          Choose your donation.
+        </p>
+
+        <div class="donation-grid">
+          <button class="donation-option active" data-amount="25">
+            <span class="amount">$25</span>
+            <span class="amount-desc">Help provide hygiene support for one classroom</span>
+          </button>
+
+          <button class="donation-option" data-amount="50">
+            <span class="amount">$50</span>
+            <span class="amount-desc">Fund educational materials for a school</span>
+          </button>
+
+          <button class="donation-option" data-amount="100">
+            <span class="amount">$100</span>
+            <span class="amount-desc">Support better sanitation for hundreds of children</span>
+          </button>
+
+          <button class="donation-option" data-amount="500">
+            <span class="amount">$500</span>
+            <span class="amount-desc">Contribute to water access and facilities</span>
+          </button>
+        </div>
+
+        <div class="custom-amount-wrap">
+          <input type="number" id="customAmount" placeholder="Custom amount, ex: 250" min="1" />
+          <button class="btn btn-light" id="applyCustomAmount">Custom donation</button>
+        </div>
+
+        <div class="selected-amount" id="selectedAmountText">Selected donation: $25</div>
+
+        <div class="panel-note">
+          After donations, updates, photos, stories will be provided.
+        </div>
+
+        <div class="panel-cta">
+          <a href="#donation-post" class="btn btn-primary" id="goToPostBtn">Go to donation post</a>
+          <button class="btn btn-light" id="fakeDonateBtn">Donate Securely</button>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <section class="floating-cards">
+    <div class="container">
+      <div class="floating-grid">
+
+        <div class="info-card">
+          <h3>Other ways to give</h3>
+          <p>Добавь банковский перевод, ежемесячные донаты, employer match или sponsorship.</p>
+          <a href="#">See options</a>
+        </div>
+        
+        <div class="info-card">
+          <h3>Real impact</h3>
+          <p>Our real cases.</p>
+          <a href="#impact">Read stories</a>
+        </div>
+
+        <div class="info-card">
+          <h3>Join the conversation</h3>
+          <p>Discuss your experience.</p>
+          <a href="#comments">Go to comments</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+<section class="section" id="posts">
+  <div class="container">
+
+    <div class="section-head">
+      <h2 class="section-title">Active Campaigns</h2>
+      <p class="section-text">
+        Choose a cause and support real impact. Filter campaigns by category.
+      </p>
+
+      <div class="posts-filters">
+        <button class="post-filter-btn active" data-category="all">All</button>
+        <button class="post-filter-btn" data-category="water">Water</button>
+        <button class="post-filter-btn" data-category="health">Health</button>
+        <button class="post-filter-btn" data-category="education">Education</button>
+        <button class="post-filter-btn" data-category="animals">Animals</button>
+      </div>
+    </div>
+
+    <div class="posts-list">
+
+      <!-- POST 1 -->
+      <article class="big-post" data-category="water">
+        <div class="post-inner">
+
+          <div class="post-image" style="background-image:url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1400&q=80')"></div>
+
+          <div class="post-content">
+            <div class="post-meta">
+              <span class="post-category water">Water</span>
+              <span class="post-time">2 hours ago</span>
+            </div>
+
+            <h3>Clean water for rural schools</h3>
+
+            <p>
+              Help provide access to safe drinking water and sanitation systems
+              for children in remote schools.
+            </p>
+
+            <div class="post-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:42%"></div>
+              </div>
+              <div class="progress-text">
+                $4,250 raised of $10,000
+              </div>
+            </div>
+
+            <div class="post-actions">
+              <a href="#donation-post" class="btn btn-primary">Open Post</a>
+              <button class="btn btn-light">Share</button>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- POST 2 -->
+      <article class="big-post" data-category="health">
+        <div class="post-inner">
+
+          <div class="post-image" style="background-image:url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1400&q=80')"></div>
+
+          <div class="post-content">
+            <div class="post-meta">
+              <span class="post-category health">Health</span>
+              <span class="post-time">5 hours ago</span>
+            </div>
+
+            <h3>Medical support for families</h3>
+
+            <p>
+              Provide essential healthcare, medicine, and support for families
+              in underserved communities.
+            </p>
+
+            <div class="post-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:59%"></div>
+              </div>
+              <div class="progress-text">
+                $5,040 raised of $8,500
+              </div>
+            </div>
+
+            <div class="post-actions">
+              <a href="#donation-post" class="btn btn-primary">Open Post</a>
+              <button class="btn btn-light">Share</button>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- POST 3 -->
+      <article class="big-post" data-category="education">
+        <div class="post-inner">
+
+          <div class="post-image" style="background-image:url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1400&q=80')"></div>
+
+          <div class="post-content">
+            <div class="post-meta">
+              <span class="post-category education">Education</span>
+              <span class="post-time">1 day ago</span>
+            </div>
+
+            <h3>Books and school supplies</h3>
+
+            <p>
+              Help children access better education with books, notebooks, and
+              essential school materials.
+            </p>
+
+            <div class="post-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:36%"></div>
+              </div>
+              <div class="progress-text">
+                $2,180 raised of $6,000
+              </div>
+            </div>
+
+            <div class="post-actions">
+              <a href="#donation-post" class="btn btn-primary">Open Post</a>
+              <button class="btn btn-light">Share</button>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- POST 4 -->
+      <article class="big-post" data-category="animals">
+        
+        <div class="post-inner">
+
+          <div class="post-image" style="background-image:url('https://www.diamondpet.com/wp-content/uploads/2023/07/brown-chihuahua-standing-in-grass-071723.jpg')"></div>
+
+          <div class="post-content">
+            <div class="post-meta">
+              <span class="post-category animals">Animals</span>
+              <span class="post-time">2 days ago</span>
+            </div>
+
+            <h3>Support animal shelters</h3>
+
+            <p>
+              Provide food, shelter, and medical care for rescued animals waiting
+              for adoption.
+            </p>
+
+            <div class="post-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:28%"></div>
+              </div>
+              <div class="progress-text">
+                $1,620 raised of $4,000
+              </div>
+            </div>
+
+            <div class="post-actions">
+              <a href="#donation-post" class="btn btn-primary">Open Post</a>
+              <button class="btn btn-light">Share</button>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+    </div>
+
+    <div id="noPostsFound" style="display:none; margin-top:20px;">
+      No campaigns found.
+    </div>
+
+  </div>
+</section>
+  <section class="section" id="impact">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Give Communities a Voice in Health and Let Them Thrive</h2>
+        <p class="section-text">
+          
+        </p>
+      </div>
+
+      <div class="story-layout">
+        <div class="story-image"></div>
+
+        <div class="story-card">
+          <h3>Your donation helps create lasting change</h3>
+          <p>
+            WOW.
+          </p>
+          <p>
+            Bebra.
+          </p>
+
+          <div class="quote">
+            “Replace this with a testimonial from a volunteer, donor, teacher, or community member.”
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="donation-post">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Donation Post</h2>
+        <p class="section-text">
+        </p>
+      </div>
+
+      <div class="post-layout">
+        <div class="post-card">
+          <div class="post-meta">Posted by NALA STYLE • 2 hours ago</div>
+          <h3>Help us raise funds for clean water access in rural schools</h3>
+          <p>
+            We are collecting donations to support clean water access, sanitation materials,
+            and healthier learning environments for children. Every amount helps us move faster.
+          </p>
+          <p>
+            This post can work like a campaign page: add a cover image, more details,
+            donor names, recent updates, and a bigger progress bar if you want.
+          </p>
+
+          <div class="mini-stats">
+            <div class="mini-stat">
+              <strong id="campaignGoal">$10,000</strong>
+              <span>Campaign goal</span>
+            </div>
+            <div class="mini-stat">
+              <strong id="selectedPostAmount">$25</strong>
+              <span>Your selected donation</span>
+            </div>
+          </div>
+
+          <div class="post-actions">
+            <button class="btn btn-primary" id="postDonateBtn">Donate Selected Amount</button>
+            <button class="btn btn-light" id="shareBtn">Share Post</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="comment-form-card">
+            <h3>Leave a comment</h3>
+            <form class="comment-form" id="commentForm">
+              <input type="text" id="commentName" placeholder="Your name" required />
+              <textarea id="commentText" placeholder="Write your comment..." required></textarea>
+              <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    
+  <section class="section" id="user-posts">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Created Donation Posts</h2>
+      <p class="section-text">Posts created by registered users will appear here.</p>
+    </div>
+
+    <div id="userPostsList" class="user-posts-list"></div>
+  </div>
+</section>
+  <section class="section" id="comments">
+    <div class="container">
+      <div class="comments-card">
+        <h3>Community comments</h3>
+        <div class="comments-list" id="commentsList">
+          <div class="comment-item">
+            <div class="comment-top">
+              <div class="comment-name">Amina</div>
+              <div class="comment-date">Today</div>
+            </div>
+            <div class="comment-text">This is such a meaningful project. Happy to support it.</div>
+          </div>
+
+          <div class="comment-item">
+            <div class="comment-top">
+              <div class="comment-name">Daniel</div>
+              <div class="comment-date">Today</div>
+            </div>
+            <div class="comment-text">Love the mission. Clean water access changes everything.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="stats-wrap">
+        <div class="section-head">
+          <h2 class="section-title">Turn the Tap On Today</h2>
+          <p class="section-text">
+            Здесь можно показывать уровни пожертвований, годовые цели или понятные impact numbers.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat">
+            <strong>$118</strong>
+            <span>Support one school initiative</span>
+          </div>
+
+          <div class="stat">
+            <strong>$1180</strong>
+            <span>Support one village-level program</span>
+          </div>
+
+          <div class="stat">
+            <strong>$6260</strong>
+            <span>Support one district campaign</span>
+          </div>
+
+          <div class="stat">
+            <strong>$30,000</strong>
+            <span>Support a region-wide health effort</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+      <div id="authModal" style="display:none;">
+  <div class="payment-modal active" style="display:flex; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999;">
+    <div class="payment-modal-content" style="margin:auto; max-width:420px;">
+      <button class="payment-close" onclick="hideAuth()">&times;</button>
+      <h2>Login / Register</h2>
+      <input id="authUsername" placeholder="Username" />
+      <input id="authEmail" placeholder="Email" />
+      <input id="authPassword" type="password" placeholder="Password" />
+      <div style="display:flex; gap:10px; margin-top:12px;">
+        <button class="btn btn-header-light" onclick="handleRegister()">Register</button>
+        <button class="btn btn-primary" onclick="handleLogin()">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="createPostModal" style="display:none;">
+  <input id="postTitle" placeholder="Title">
+  <textarea id="postDesc"></textarea>
+  <input id="postGoal" placeholder="Goal">
+
+  <button onclick="createPost()">Create</button>
+</div>
+  <footer class="site-footer" id="footer">
+    <div class="container">
+      <div class="footer-box">
+        <div class="footer-grid">
+
+          <div class="footer-brand">
+            <h3>Your Foundation</h3>
+            <p>
+              Our mission is to make the world happier.
+            </p>
+            <a href="#donation-post" class="btn btn-light">Donate Today</a>
+          </div>
+
+          <div class="footer-col">
+            <h4>Site Map</h4>
+            <a href="#">Home</a>
+            <a href="#">Our Work</a>
+            <a href="#">Projects</a>
+            <a href="#impact">Impact</a>
+          </div>
+
+          <div class="footer-col">
+            <h4>Policies</h4>
+            <a href="#">Terms of Use</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <div>Email: hello@yoursite.org</div>
+            <div>Phone: +1 (000) 000-0000</div>
+            <div>Almaty, Kbtu</div>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <div>© 2026.</div>
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+<div class="payment-modal" id="paymentModal">
+  <div class="payment-modal-content">
+    <button class="payment-close" id="paymentCloseBtn">&times;</button>
+
+    <div class="payment-step" id="paymentStep">
+      <div class="payment-badge">Secure Payment</div>
+      <h2>Complete your donation</h2>
+      <p class="payment-subtext">
+        You are about to donate <strong id="paymentAmountText">$25</strong>.
+      </p>
+
+      <form id="paymentForm" class="payment-form">
+        <input type="text" id="cardName" placeholder="Cardholder name" required />
+        <input type="text" id="cardNumber" placeholder="Card number" maxlength="19" required />
+
+        <div class="payment-row">
+          <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" required />
+          <input type="text" id="cardCvv" placeholder="CVV" maxlength="4" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary payment-submit-btn">
+          Pay <span id="paymentButtonAmount">$25</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="payment-step success-step" id="successStep" style="display:none;">
+      <div class="success-icon">❤</div>
+      <h2>Your donation was sent</h2>
+      <p class="payment-subtext">
+        Thank you for your support. Your donation of
+        <strong id="successAmountText">$25</strong> was successfully submitted.
+      </p>
+
+      <div class="success-actions">
+        <button class="btn btn-primary" id="successDoneBtn">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="ui.js"></script>
+<script src="payment.js"></script>
+<script src="auth-api.js"></script>
+  
 </body>
 </html>
