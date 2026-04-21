@@ -14,27 +14,42 @@ export class CharityDetailComponent implements OnInit {
   comments: any[] = [];
   newComment = '';
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private api: ApiService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    
-    this.api.getCampaignById(id).subscribe(data => {
+    this.api.getCampaignById(id).subscribe((data: any) => {
       this.charity = data;
-      this.comments = data.comments || []; 
+      this.comments = data.comments || [];
     });
   }
 
   addComment() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    const commentData = { campaign: id, text: this.newComment };
+
+    if (!this.newComment.trim()) return;
+
+    const commentData = {
+      campaign: id,
+      text: this.newComment
+    };
 
     this.api.postComment(commentData).subscribe(() => {
       this.ngOnInit();
       this.newComment = '';
     });
   }
-  goUser(id: number) {
-  this.router.navigate(['/user', id]);
-}
+
+  donate() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.router.navigate(['/donate', id]);
+  }
+
+  goBack() {
+    this.router.navigate(['/']);
+  }
 }

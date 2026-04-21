@@ -1,19 +1,26 @@
-<div class="donate">
-  <h2>Donate</h2>
+<section class="section">
+  <div class="container">
+    <div class="payment-modal-content" style="margin: 0 auto;">
+      <div class="payment-badge">Secure Payment</div>
+      <h2>Complete your donation</h2>
+      <p class="payment-subtext">
+        You are about to donate <strong>{{ amount | currency }}</strong>.
+      </p>
 
-  <div class="form-group">
-    <label>Amount:</label>
-    <input [(ngModel)]="amount" type="number">
-  </div>
+      <div class="payment-form">
+        <input [(ngModel)]="cardName" placeholder="Cardholder name" />
+        <input [(ngModel)]="cardNumber" placeholder="Card number" />
+        <div class="payment-row">
+          <input [(ngModel)]="cardExpiry" placeholder="MM/YY" />
+          <input [(ngModel)]="cardCvv" placeholder="CVV" />
+        </div>
 
-  <div class="form-group">
-    <label>Message (Optional):</label>
-    <textarea [(ngModel)]="msg"></textarea>
-  </div>
+        <button class="btn btn-primary payment-submit-btn" (click)="confirm()">
+          Pay {{ amount | currency }}
+        </button>
 
-  <button (click)="confirm()">Continue</button>
-  
-  <div class="back-home">
-    <a routerLink="/">← Back to Home</a>
+        <button class="btn btn-light" (click)="goHome()">Back to Home</button>
+      </div>
+    </div>
   </div>
-</div>
+</section>

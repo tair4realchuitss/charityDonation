@@ -1,22 +1,89 @@
-<div class="home">
-  <h2>Categories</h2>
-  <div class="categories">
-    @for (cat of categories; track cat.id) {
-      <div class="category-card">{{ cat.name }}</div>
-    }
-  </div>
+<section class="hero">
+  <div class="container hero-wrap">
+    <div class="hero-content">
+      <h1 class="hero-title">Give Children the Opportunity to Live Healthier Lives</h1>
+      <p class="hero-text">A small act of kindness can make a big difference.</p>
+    </div>
 
-  <h2>Charities</h2>
-  <div class="charities">
-    @for (c of charities; track c.id) {
-      <div class="card">
-        <h3>{{ c.title }}</h3>
-        <p>{{ c.description }}</p>
-        <p>{{ c.current_amount | currency }} / {{ c.goal_amount | currency }}</p>
+    <aside class="hero-panel">
+      <h2>Choose your impact</h2>
 
-        <button (click)="openCharity(c.id)">View</button>
-        <button (click)="donate(c.id)">Donate</button>
+      <div class="donation-grid">
+        <button class="donation-option" [class.active]="selectedAmount === 25" (click)="updateSelectedAmount(25)">
+          <span class="amount">$25</span>
+        </button>
+
+        <button class="donation-option" [class.active]="selectedAmount === 50" (click)="updateSelectedAmount(50)">
+          <span class="amount">$50</span>
+        </button>
+
+        <button class="donation-option" [class.active]="selectedAmount === 100" (click)="updateSelectedAmount(100)">
+          <span class="amount">$100</span>
+        </button>
+
+        <button class="donation-option" [class.active]="selectedAmount === 500" (click)="updateSelectedAmount(500)">
+          <span class="amount">$500</span>
+        </button>
       </div>
-    }
+
+      <div class="custom-amount-wrap">
+        <input type="number" [(ngModel)]="customAmount" placeholder="Custom amount" min="1" />
+        <button (click)="applyCustomAmount()">Custom donation</button>
+      </div>
+
+      <div class="selected-amount">Selected donation: ${{ selectedAmount }}</div>
+    </aside>
   </div>
-</div>
+</section>
+
+<section class="section" id="posts">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Active Campaigns</h2>
+
+      <div class="posts-filters">
+        <button class="post-filter-btn" [class.active]="selectedCategory === 'all'" (click)="setCategory('all')">All</button>
+        <button class="post-filter-btn" (click)="setCategory('water')">Water</button>
+        <button class="post-filter-btn" (click)="setCategory('health')">Health</button>
+        <button class="post-filter-btn" (click)="setCategory('education')">Education</button>
+        <button class="post-filter-btn" (click)="setCategory('animals')">Animals</button>
+      </div>
+    </div>
+
+    <div class="posts-list">
+      @for (c of filteredCharities; track c.id) {
+        <article class="big-post">
+          <div class="post-inner">
+            <div class="post-image"></div>
+
+            <div class="post-content">
+              <div class="post-meta">
+                <span class="post-category">{{ c.category?.name || 'Campaign' }}</span>
+              </div>
+
+              <h3>{{ c.title }}</h3>
+              <p>{{ c.description }}</p>
+
+              <div class="post-progress">
+                <div class="progress-bar">
+                  <div
+                    class="progress-fill"
+                    [style.width.%]="c.goal_amount ? (c.current_amount / c.goal_amount) * 100 : 0">
+                  </div>
+                </div>
+                <div class="progress-text">
+                  {{ c.current_amount | currency }} raised of {{ c.goal_amount | currency }}
+                </div>
+              </div>
+
+              <div class="post-actions">
+                <button class="btn btn-primary" (click)="openCharity(c.id)">Open Post</button>
+                <button class="btn btn-light" (click)="donate(c.id)">Donate</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

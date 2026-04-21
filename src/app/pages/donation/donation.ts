@@ -11,8 +11,12 @@ import { CommonModule } from '@angular/common';
 })
 export class DonationComponent implements OnInit {
   campaignId!: number;
-  amount: number = 0;
-  msg: string = ''; 
+  amount: number = 25;
+
+  cardName = '';
+  cardNumber = '';
+  cardExpiry = '';
+  cardCvv = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +26,11 @@ export class DonationComponent implements OnInit {
 
   ngOnInit() {
     this.campaignId = Number(this.route.snapshot.paramMap.get('id'));
+    const amountFromQuery = Number(this.route.snapshot.queryParamMap.get('amount'));
+
+    if (amountFromQuery > 0) {
+      this.amount = amountFromQuery;
+    }
   }
 
   confirm() {
@@ -30,13 +39,22 @@ export class DonationComponent implements OnInit {
       return;
     }
 
+    if (!this.cardName || !this.cardNumber || !this.cardExpiry || !this.cardCvv) {
+      alert('Please fill in all payment fields.');
+      return;
+    }
+
     this.api.makeDonation(this.campaignId, this.amount).subscribe({
-      next: (res: any) => {
+      next: () => {
         this.router.navigate(['/success']);
       },
       error: (err: any) => {
         alert(err.error?.error || 'Donation failed');
       }
     });
+  }
+
+  goHome() {
+    this.router.navigate(['/']);
   }
 }

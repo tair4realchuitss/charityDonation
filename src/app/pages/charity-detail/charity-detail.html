@@ -1,25 +1,52 @@
-<div class="charity">
-  @if (charity) {
-    <h2>{{ charity.title }}</h2>
-    <p>{{ charity.description }}</p>
+@if (charity) {
+  <section class="section">
+    <div class="container">
+      <div class="post-layout">
+        <div class="post-card">
+          <div class="post-meta">Posted campaign</div>
+          <h3>{{ charity.title }}</h3>
+          <p>{{ charity.description }}</p>
 
-    <h3>Comments</h3>
-    @for (c of comments; track c.id) {
-      <div class="comment">
-        <div (click)="goUser(c.user_id)" style="cursor: pointer; font-weight: bold;">
-          {{ c.user_name || 'Anonymous' }}
+          <div class="mini-stats">
+            <div class="mini-stat">
+              <strong>{{ charity.goal_amount | currency }}</strong>
+              <span>Campaign goal</span>
+            </div>
+            <div class="mini-stat">
+              <strong>{{ charity.current_amount | currency }}</strong>
+              <span>Raised now</span>
+            </div>
+          </div>
+
+          <div class="post-actions">
+            <button class="btn btn-primary" (click)="donate()">Donate</button>
+            <button class="btn btn-light" (click)="goBack()">Back</button>
+          </div>
         </div>
-        <p>{{ c.text }}</p>
+
+        <div>
+          <div class="comment-form-card">
+            <h3>Leave a comment</h3>
+            <textarea [(ngModel)]="newComment" placeholder="Write your comment..."></textarea>
+            <button class="btn btn-primary" (click)="addComment()">Post Comment</button>
+          </div>
+        </div>
       </div>
-    }
 
-    <textarea [(ngModel)]="newComment" placeholder="Write a comment..."></textarea>
-    <button (click)="addComment()">Add Comment</button>
-  } @else {
-    <p>Loading details...</p>
-  }
+      <div class="comments-card" style="margin-top: 24px;">
+        <h3>Community comments</h3>
 
-  <div class="back-home">
-    <a routerLink="/">← Back to Home</a>
-  </div>
-</div>
+        @for (c of comments; track c.id) {
+          <div class="comment-item">
+            <div class="comment-top">
+              <div class="comment-name">{{ c.user_name || 'Anonymous' }}</div>
+            </div>
+            <div class="comment-text">{{ c.text }}</div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+} @else {
+  <p>Loading details...</p>
+}

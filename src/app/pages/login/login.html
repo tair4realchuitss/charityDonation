@@ -1,19 +1,24 @@
-<div class="login-container">
+<div class="auth-page">
+  <div class="auth-card">
+    <h2>{{ mode === 'login' ? 'Sign In' : 'Register' }}</h2>
 
-  <h2>Sign In</h2>
+    <div class="auth-switch">
+      <button type="button" (click)="setMode('login')">Sign In</button>
+      <button type="button" (click)="setMode('register')">Register</button>
+    </div>
 
-  <input [(ngModel)]="username" placeholder="Username">
-  <input [(ngModel)]="password" type="password" placeholder="Password">
+    <input [(ngModel)]="username" placeholder="Username" />
+    @if (mode === 'register') {
+      <input [(ngModel)]="email" placeholder="Email" />
+    }
+    <input [(ngModel)]="password" type="password" placeholder="Password" />
 
-  <button (click)="doLogin()">Login</button>
+    @if (mode === 'login') {
+      <button (click)="doLogin()">Login</button>
+    } @else {
+      <button (click)="doRegister()">Register</button>
+    }
 
-  <div class="register-box">
-    <p>Don’t have an account?</p>
-    <button (click)="fakeRegister()">Create Account</button>
+    <button routerLink="/">Back to Home</button>
   </div>
-
-  <div class="back-home">
-  <a routerLink="/">← Back to Home</a>
-</div>
-
 </div>
